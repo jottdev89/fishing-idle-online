@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idle Fishing</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Sun & Clouds -->
+  <div class="sun"></div>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+
+  <!-- Water -->
+  <div class="water-card" id="water">
+
+    <!-- Footbridge -->
+    <div class="footbridge"></div>
+
+    <!-- Fisherman -->
+    <div class="fisherman">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="rod">
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <!-- SVG Wave Surface -->
+    <svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path
+        d="M0 30
+           Q 50 20 100 30
+           T 200 30
+           T 300 30
+           T 400 30
+           T 500 30
+           T 600 30
+           T 700 30
+           T 800 30
+           T 900 30
+           T 1000 30
+           T 1100 30
+           T 1200 30
+           V60
+           H0
+           Z"
+        fill="rgba(255,255,255,0.9)"
+      />
+    </svg>
+
+  </div> <!-- end water-card -->
+
+  <!-- Progress bar BELOW the water -->
+  <div class="progress">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <!-- Auto-fishing timer -->
+  <div class="auto-text">AUTO-FISHING IN <span id="timer">30</span>S</div>
+
+  <!-- Inventory -->
+  <div class="inventory-header">
+    <h3>📦 inventory</h3>
+    <div class="badge"><span id="total">0</span> Caught</div>
+  </div>
+  <div class="grid" id="inventory"></div>
+
+  <!-- BOTTOM NAVIGATION -->
+  <div class="bottom-nav">
+    <button class="nav-btn" id="btn-character">👤</button>
+    <button class="nav-btn" id="btn-inventory">📦</button>
+    <button class="nav-btn main-btn" id="btn-main">🎣</button>
+    <button class="nav-btn" id="btn-clan">🏰</button>
+    <button class="nav-btn" id="btn-pvp">⚔️</button>
+  </div>
+
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
