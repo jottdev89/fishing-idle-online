@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idle Fishing</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ================= SCENES ================= -->
+
+  <!-- MAIN SCENE -->
+  <div class="scene scene-main active">
+
+    <!-- Sun & Clouds -->
+    <div class="sun"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <!-- Water -->
+    <div class="water-card" id="water">
+
+      <!-- Footbridge -->
+      <div class="footbridge"></div>
+
+      <!-- Fisherman -->
+      <div class="fisherman">
+        <div class="head"></div>
+        <div class="body"></div>
+        <div class="rod">
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <!-- SVG Wave Surface -->
+      <svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path
+          d="M0 30
+             Q 50 20 100 30
+             T 200 30
+             T 300 30
+             T 400 30
+             T 500 30
+             T 600 30
+             T 700 30
+             T 800 30
+             T 900 30
+             T 1000 30
+             T 1100 30
+             T 1200 30
+             V60
+             H0
+             Z"
+          fill="rgba(255,255,255,0.9)"
+        />
+      </svg>
+
+    </div> <!-- end water-card -->
+
+    <!-- Progress bar BELOW the water -->
+    <div class="progress">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+
+    <!-- Auto-fishing timer -->
+    <div class="auto-text">AUTO-FISHING IN <span id="timer">3</span>S</div>
+
+    <!-- Player Progress Bar -->
+    <div class="player-progress">
+      <div class="progress-header">
+        <span class="player-level">Level <span id="playerLevel">1</span></span>
+        <span class="player-coins">💰 <span id="playerCoins">0</span></span>
+      </div>
+      <div class="xp-bar">
+        <div class="xp-fill" id="xpFill"></div>
+      </div>
+      <div class="xp-text" id="playerXP">0 / 100 XP</div>
+    </div>
+
+    <!-- Last Catch Display -->
+    <div class="last-catch" id="lastCatch">
+      <div class="catch-label">LAST CATCH</div>
+      <div class="catch-grid" id="catchGrid"></div>
+    </div>
+
+  </div> <!-- end scene-main -->
+
+  <!-- INVENTORY SCENE -->
+  <div class="scene scene-inventory">
+    <div class="inventory-header">
+      <h3>📦 Inventory</h3>
+    </div>
+    <div class="grid" id="inventory"></div>
+  </div>
+
+  <!-- CHARACTER SCENE -->
+  <div class="scene scene-character">
+    <h2 style="font-size: 24px; margin: 0 0 16px 0; padding: 16px; background: white; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.1);">📊 Statistics</h2>
+    <div class="stats-card">
+      <div class="stat-row">
+        <span>Total Catches:</span>
+        <span id="statTotal">0</span>
+      </div>
+      <div class="stat-row">
+        <span>Unique Fish:</span>
+        <span id="statUnique">0</span>
+      </div>
+      <div class="stat-row">
+        <span>Rarest Catch:</span>
+        <span id="statRarest">None</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPGRADES SCENE -->
+  <div class="scene scene-upgrades">
+    <h2 style="font-size: 24px; margin: 0 0 16px 0; padding: 16px; background: white; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.1);">⚙️ Upgrades</h2>
+    
+    <div class="upgrade-card">
+      <div class="upgrade-header">
+        <span class="upgrade-name">🎣 Fishing Rod</span>
+        <span class="upgrade-level">Level <span id="rodLevel">1</span></span>
+      </div>
+      <div class="upgrade-desc">Unlock higher tier fish</div>
+      <div class="upgrade-info">Max Tier: <span id="maxTier">1</span></div>
+      <button class="upgrade-btn" id="upgradeRod">
+        <span>Upgrade</span>
+        <span class="upgrade-cost" id="rodCost">100 💰</span>
+      </button>
+    </div>
+
+    <div class="upgrade-card">
+      <div class="upgrade-header">
+        <span class="upgrade-name">⚖️ Weight Limit</span>
+        <span class="upgrade-level">Level <span id="weightLevel">1</span></span>
+      </div>
+      <div class="upgrade-desc">Catch heavier fish</div>
+      <div class="upgrade-info">Max Weight: <span id="maxWeight">1kg</span></div>
+      <button class="upgrade-btn" id="upgradeWeight">
+        <span>Upgrade</span>
+        <span class="upgrade-cost" id="weightCost">100 💰</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS SCENE -->
+  <div class="scene scene-achievements">
+    <h2 style="font-size: 24px; margin: 0 0 16px 0; padding: 16px; background: white; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.1);">🏆 Achievements</h2>
+    <p style="text-align: center; color: #999; margin-top: 40px; padding: 0 16px;">Coming soon!</p>
+  </div>
+
+  <!-- ================= BOTTOM BUTTONS ================= -->
+  <div class="bottom-buttons">
+    <button data-scene="character">📊<br>Stats</button>
+    <button data-scene="inventory">📦<br>Inventory</button>
+    <button data-scene="main" class="active">🎣<br>Fishing</button>
+    <button data-scene="upgrades">⚙️<br>Upgrades</button>
+    <button data-scene="achievements">🏆<br>Achievements</button>
+  </div>
+
+</div> <!-- end app -->
+
+<!-- Offline Rewards Modal -->
+<div class="offline-modal" id="offlineModal">
+  <div class="offline-content">
+    <div class="offline-header">
+      <h2>🎣 Welcome Back!</h2>
+      <p class="offline-subtitle">While you were away...</p>
+    </div>
+    <div class="offline-summary">
+      <div class="summary-item">
+        <span class="summary-label">Total Caught:</span>
+        <span class="summary-value" id="offlineTotal">0</span>
+      </div>
+      <div class="summary-item">
+        <span class="summary-label">Time Away:</span>
+        <span class="summary-value" id="offlineTime">0m</span>
+      </div>
+    </div>
+    <div class="offline-rewards" id="offlineRewards">+0 💰 | +0 XP</div>
+    <div class="offline-fish-list" id="offlineFishList"></div>
+    <button class="close-offline" id="closeOffline">Collect Rewards</button>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
